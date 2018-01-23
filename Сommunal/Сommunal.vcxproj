@@ -19,9 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="HousesManagement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="ServiceManagement.cpp" />
+    <ClCompile Include="TariffSelection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -31,19 +34,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graph.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="HousesManagement.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MainWindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ServiceManagement.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="TariffSelection.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Graph.resx">
+      <DependentUpon>Graph.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HousesManagement.resx">
+      <DependentUpon>HousesManagement.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServiceManagement.resx">
       <DependentUpon>ServiceManagement.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TariffSelection.resx">
+      <DependentUpon>TariffSelection.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup Label="Globals">

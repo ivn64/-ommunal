@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 #include "ServiceManagement.h"
+#include "HousesManagement.h"
+#include "Graph.h"
 
 namespace Ñommunal 
 {
@@ -97,6 +99,7 @@ namespace Ñommunal
 			this->button4->TabIndex = 13;
 			this->button4->Text = L"Óïðàâëåíèå îáúåêòàìè";
 			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &MainWindow::button4_Click);
 			// 
 			// button3
 			// 
@@ -109,6 +112,7 @@ namespace Ñommunal
 			this->button3->TabIndex = 12;
 			this->button3->Text = L"Ãðàôèê";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MainWindow::button3_Click);
 			// 
 			// button2
 			// 
@@ -143,10 +147,20 @@ namespace Ñommunal
 
 		}
 #pragma endregion
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
-	{
-		ServiceManagement^ OpenWindow=gcnew ServiceManagement;
-		OpenWindow->ShowDialog();
-	}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	ServiceManagement^ OpenWindow = gcnew ServiceManagement;
+	OpenWindow->ShowDialog();
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	HousesManagement^ HousesManagementWindow = gcnew HousesManagement;
+	HousesManagementWindow->ShowDialog();
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	Graph^ GraphWindow = gcnew Graph;
+	GraphWindow->ShowDialog();
+}
 };
 }
