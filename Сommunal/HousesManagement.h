@@ -1,6 +1,11 @@
 #pragma once
 
-namespace Ñommunal {
+#include <string>
+
+using namespace std;
+
+namespace Ñommunal
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -38,19 +43,25 @@ namespace Ñommunal {
 	protected:
 	private: System::Windows::Forms::RadioButton^  radioButton1;
 	private: System::Windows::Forms::TextBox^  textBox8;
-	private: System::Windows::Forms::TextBox^  textBox9;
+
 	private: System::Windows::Forms::TextBox^  textBox6;
-	private: System::Windows::Forms::TextBox^  textBox7;
+
 	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::TextBox^  textBox5;
+
 	private: System::Windows::Forms::Button^  button5;
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox2;
+
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::ListBox^  listBox1;
+
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label1;
 
 	private:
 		/// <summary>
@@ -68,19 +79,19 @@ namespace Ñommunal {
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// radioButton2
@@ -93,6 +104,7 @@ namespace Ñommunal {
 			this->radioButton2->TabStop = true;
 			this->radioButton2->Text = L"÷àñòíûé äîì";
 			this->radioButton2->UseVisualStyleBackColor = true;
+			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &HousesManagement::radioButton2_CheckedChanged);
 			// 
 			// radioButton1
 			// 
@@ -104,6 +116,7 @@ namespace Ñommunal {
 			this->radioButton1->TabStop = true;
 			this->radioButton1->Text = L"ìíîãîêâàðòèðíûé äîì";
 			this->radioButton1->UseVisualStyleBackColor = true;
+			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &HousesManagement::radioButton1_CheckedChanged);
 			// 
 			// textBox8
 			// 
@@ -112,16 +125,6 @@ namespace Ñommunal {
 			this->textBox8->Size = System::Drawing::Size(103, 20);
 			this->textBox8->TabIndex = 48;
 			// 
-			// textBox9
-			// 
-			this->textBox9->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox9->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox9->Location = System::Drawing::Point(200, 125);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(221, 13);
-			this->textBox9->TabIndex = 47;
-			this->textBox9->Text = L"Êîëè÷åñòâî çàðåãåñòðèðîâàííûõ ãðàæäàí";
-			// 
 			// textBox6
 			// 
 			this->textBox6->Location = System::Drawing::Point(312, 99);
@@ -129,32 +132,12 @@ namespace Ñommunal {
 			this->textBox6->Size = System::Drawing::Size(218, 20);
 			this->textBox6->TabIndex = 46;
 			// 
-			// textBox7
-			// 
-			this->textBox7->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox7->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox7->Location = System::Drawing::Point(200, 99);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(106, 13);
-			this->textBox7->TabIndex = 45;
-			this->textBox7->Text = L"Îáùàÿ ïëîùàäü";
-			// 
 			// textBox4
 			// 
 			this->textBox4->Location = System::Drawing::Point(312, 73);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(218, 20);
 			this->textBox4->TabIndex = 44;
-			// 
-			// textBox5
-			// 
-			this->textBox5->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox5->Location = System::Drawing::Point(200, 73);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(106, 13);
-			this->textBox5->TabIndex = 43;
-			this->textBox5->Text = L"Àäðåñ";
 			// 
 			// button5
 			// 
@@ -187,16 +170,7 @@ namespace Ñommunal {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(218, 20);
 			this->textBox3->TabIndex = 40;
-			// 
-			// textBox2
-			// 
-			this->textBox2->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Location = System::Drawing::Point(200, 47);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(106, 13);
-			this->textBox2->TabIndex = 39;
-			this->textBox2->Text = L"Îïèñàíèå";
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &HousesManagement::textBox3_TextChanged);
 			// 
 			// button3
 			// 
@@ -222,23 +196,61 @@ namespace Ñommunal {
 			this->button1->Text = L"Äîáàâèòü";
 			this->button1->UseVisualStyleBackColor = false;
 			// 
-			// textBox1
-			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Location = System::Drawing::Point(12, 12);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(182, 13);
-			this->textBox1->TabIndex = 36;
-			this->textBox1->Text = L"Ñïèñîê îáúåêòîâ";
-			// 
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"1", L"2", L"3", L"4" });
 			this->listBox1->Location = System::Drawing::Point(12, 47);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(182, 121);
 			this->listBox1->TabIndex = 35;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &HousesManagement::listBox1_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(197, 50);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(57, 13);
+			this->label2->TabIndex = 52;
+			this->label2->Text = L"Îïèñàíèå";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(197, 76);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(38, 13);
+			this->label3->TabIndex = 53;
+			this->label3->Text = L"Àäðåñ";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(197, 102);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(90, 13);
+			this->label4->TabIndex = 54;
+			this->label4->Text = L"Îáùàÿ ïëîùàäü";
+			this->label4->Click += gcnew System::EventHandler(this, &HousesManagement::label4_Click);
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(197, 128);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(222, 13);
+			this->label5->TabIndex = 55;
+			this->label5->Text = L"Êîëè÷åñòâî çàðåãåñòðèðîâàííûõ ãðàæäàí";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(9, 18);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(95, 13);
+			this->label1->TabIndex = 56;
+			this->label1->Text = L"Ñïèñîê îáúåêòîâ";
 			// 
 			// HousesManagement
 			// 
@@ -246,32 +258,73 @@ namespace Ñommunal {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(559, 231);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->radioButton2);
 			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->textBox8);
-			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->listBox1);
 			this->Name = L"HousesManagement";
 			this->Text = L"HousesManagement";
+			this->Load += gcnew System::EventHandler(this, &HousesManagement::HousesManagement_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
-{
-	Close();
-}
-};
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Close();
+	}
+	private: System::Void HousesManagement_Load(System::Object^  sender, System::EventArgs^  e)
+	{
+		listBox1->Items->Add("hello");
+	}
+	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+		//String^ str = gcnew String("Hello World");
+
+		string yu = "Hi";
+		
+		String^ str = gcnew String(yu.c_str());
+
+		/*char c[] = "Hello world!";
+		String^ str = gcnew String(c);
+		textBox3->Text = str;*/
+
+
+
+		if (listBox1->Items[0] == "1")
+			textBox4->Text = "232321";
+		if (listBox1->SelectedIndex >= 0)
+			if (listBox1->Items[listBox1->SelectedIndex] == "1")
+				textBox6->Text = "Hreee232321";
+		textBox3->Text = str;
+	}
+	};
 }

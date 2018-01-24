@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="HousesManagement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="ServiceManagement.cpp" />
+    <ClCompile Include="Tariff.cpp" />
     <ClCompile Include="TariffSelection.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,9 +36,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataArray.h" />
     <ClInclude Include="Graph.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="House.h" />
     <ClInclude Include="HousesManagement.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -46,6 +50,7 @@
     <ClInclude Include="ServiceManagement.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Tariff.h" />
     <ClInclude Include="TariffSelection.h">
       <FileType>CppForm</FileType>
     </ClInclude>

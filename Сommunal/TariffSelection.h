@@ -37,17 +37,23 @@ namespace Сommunal {
 	private: System::Windows::Forms::Button^  button1;
 	protected:
 	private: System::Windows::Forms::ComboBox^  comboBox5;
-	private: System::Windows::Forms::TextBox^  textBox10;
+
 	private: System::Windows::Forms::ComboBox^  comboBox4;
-	private: System::Windows::Forms::TextBox^  textBox9;
-	private: System::Windows::Forms::TextBox^  textBox8;
-	private: System::Windows::Forms::TextBox^  textBox7;
+
+
+
 	private: System::Windows::Forms::ComboBox^  comboBox3;
-	private: System::Windows::Forms::TextBox^  textBox6;
+
 	private: System::Windows::Forms::ComboBox^  comboBox2;
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::DateTimePicker^  dateTimePicker1;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
 
 	private:
 		/// <summary>
@@ -64,17 +70,17 @@ namespace Сommunal {
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->comboBox5 = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -82,7 +88,7 @@ namespace Сommunal {
 			this->button1->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->button1->FlatAppearance->BorderSize = 0;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Location = System::Drawing::Point(317, 170);
+			this->button1->Location = System::Drawing::Point(297, 170);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(116, 22);
 			this->button1->TabIndex = 52;
@@ -92,127 +98,121 @@ namespace Сommunal {
 			// comboBox5
 			// 
 			this->comboBox5->FormattingEnabled = true;
-			this->comboBox5->Location = System::Drawing::Point(200, 143);
+			this->comboBox5->Location = System::Drawing::Point(180, 143);
 			this->comboBox5->Name = L"comboBox5";
 			this->comboBox5->Size = System::Drawing::Size(233, 21);
 			this->comboBox5->TabIndex = 51;
 			// 
-			// textBox10
-			// 
-			this->textBox10->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox10->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox10->Location = System::Drawing::Point(12, 143);
-			this->textBox10->Name = L"textBox10";
-			this->textBox10->Size = System::Drawing::Size(182, 13);
-			this->textBox10->TabIndex = 50;
-			this->textBox10->Text = L"Ваш поставщик услуг";
-			// 
 			// comboBox4
 			// 
 			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Location = System::Drawing::Point(200, 116);
+			this->comboBox4->Location = System::Drawing::Point(180, 116);
 			this->comboBox4->Name = L"comboBox4";
 			this->comboBox4->Size = System::Drawing::Size(233, 21);
 			this->comboBox4->TabIndex = 49;
 			// 
-			// textBox9
-			// 
-			this->textBox9->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox9->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox9->Location = System::Drawing::Point(12, 116);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(182, 13);
-			this->textBox9->TabIndex = 48;
-			this->textBox9->Text = L"Коммунальная услуга";
-			// 
-			// textBox8
-			// 
-			this->textBox8->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox8->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox8->Location = System::Drawing::Point(12, 90);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(182, 13);
-			this->textBox8->TabIndex = 47;
-			this->textBox8->Text = L"Период начисления";
-			// 
-			// textBox7
-			// 
-			this->textBox7->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox7->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox7->Location = System::Drawing::Point(12, 64);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(182, 13);
-			this->textBox7->TabIndex = 46;
-			this->textBox7->Text = L"Муниципальное образование";
-			// 
 			// comboBox3
 			// 
 			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(200, 64);
+			this->comboBox3->Location = System::Drawing::Point(180, 64);
 			this->comboBox3->Name = L"comboBox3";
 			this->comboBox3->Size = System::Drawing::Size(233, 21);
 			this->comboBox3->TabIndex = 45;
 			// 
-			// textBox6
-			// 
-			this->textBox6->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox6->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox6->Location = System::Drawing::Point(12, 38);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(182, 13);
-			this->textBox6->TabIndex = 44;
-			this->textBox6->Text = L"Муниципальный район";
-			// 
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(200, 38);
+			this->comboBox2->Location = System::Drawing::Point(180, 38);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(233, 21);
 			this->comboBox2->TabIndex = 43;
 			// 
-			// textBox1
-			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Location = System::Drawing::Point(12, 12);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(182, 13);
-			this->textBox1->TabIndex = 42;
-			this->textBox1->Text = L"Субъект РФ";
-			// 
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(200, 12);
+			this->comboBox1->Location = System::Drawing::Point(180, 12);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(233, 21);
 			this->comboBox1->TabIndex = 41;
 			// 
 			// dateTimePicker1
 			// 
-			this->dateTimePicker1->Location = System::Drawing::Point(200, 90);
+			this->dateTimePicker1->Location = System::Drawing::Point(180, 90);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(233, 20);
 			this->dateTimePicker1->TabIndex = 40;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 15);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(70, 13);
+			this->label1->TabIndex = 53;
+			this->label1->Text = L"Субъект РФ";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(12, 41);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(122, 13);
+			this->label2->TabIndex = 54;
+			this->label2->Text = L"Муниципальный район";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(12, 67);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(156, 13);
+			this->label3->TabIndex = 55;
+			this->label3->Text = L"Муниципальное образование";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(12, 96);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(107, 13);
+			this->label4->TabIndex = 56;
+			this->label4->Text = L"Период начисления";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(12, 119);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(119, 13);
+			this->label5->TabIndex = 57;
+			this->label5->Text = L"Коммунальная услуга";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(12, 146);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(117, 13);
+			this->label6->TabIndex = 58;
+			this->label6->Text = L"Ваш поставщик услуг";
 			// 
 			// TariffSelection
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(451, 204);
+			this->ClientSize = System::Drawing::Size(429, 204);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->comboBox5);
-			this->Controls->Add(this->textBox10);
 			this->Controls->Add(this->comboBox4);
-			this->Controls->Add(this->textBox9);
-			this->Controls->Add(this->textBox8);
-			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->comboBox3);
-			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->comboBox2);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->dateTimePicker1);
 			this->Name = L"TariffSelection";

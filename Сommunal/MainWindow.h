@@ -135,7 +135,7 @@ namespace Ñommunal
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(689, 393);
+			this->ClientSize = System::Drawing::Size(458, 356);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
