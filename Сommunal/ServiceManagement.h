@@ -165,7 +165,7 @@ namespace Сommunal {
 			this->radioButton2->TabStop = true;
 			this->radioButton2->Text = L"тариф";
 			this->radioButton2->UseVisualStyleBackColor = true;
-			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &ServiceManagement::radioButton2_CheckedChanged);
+			this->radioButton2->Click += gcnew System::EventHandler(this, &ServiceManagement::radioButton2_Click);
 			// 
 			// radioButton1
 			// 
@@ -176,7 +176,7 @@ namespace Сommunal {
 			this->radioButton1->TabIndex = 23;
 			this->radioButton1->Text = L"счётчик";
 			this->radioButton1->UseVisualStyleBackColor = true;
-			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &ServiceManagement::radioButton1_CheckedChanged);
+			this->radioButton1->Click += gcnew System::EventHandler(this, &ServiceManagement::radioButton1_Click);
 			// 
 			// textBox3
 			// 
@@ -357,11 +357,15 @@ namespace Сommunal {
 		Services->SaveToFile("Service.dat");
 		Close();
 	}
-	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void radioButton1_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		//Temp.SetIsMeter(true);
+		if (listBox1->SelectedIndex >= 0)
+		{
+			Temp->SetIsMeter(true);
+			Services->SetItem(*Temp, listBox1->SelectedIndex);
+		}
 	}
-	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void radioButton2_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		if (listBox1->SelectedIndex >= 0)
 		{
@@ -375,6 +379,7 @@ namespace Сommunal {
 	}
 	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		
 	}
 	};
 }
