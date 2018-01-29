@@ -16,6 +16,7 @@ public:
 	void RemoveItem(int);
 	int GetTop();
 	T GetItem(int);
+	void SetItem(const T&, int);
 	void SaveToFile(string);
 	void LoadFromFile(string);
 };
@@ -24,7 +25,7 @@ template <class T>
 DataArray<T>::DataArray()
 {
 	top = 0;
-	length = 10;
+	length = 20;
 	myArray = new T[length];
 }
 
@@ -61,6 +62,14 @@ T DataArray<T>::GetItem(int i)
 {
 	return myArray[i];
 }
+
+template <class T>
+void DataArray<T>::SetItem(const T &value, int index)
+{
+	myArray[index] = value;
+}
+
+
 template <class T>
 void DataArray<T>::SaveToFile(string fileName)
 {

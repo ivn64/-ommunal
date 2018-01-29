@@ -2,7 +2,7 @@
 
 Tariff::Tariff()
 {
-	name = "Новый объект";
+	name = "Новый объект1";
 	isMeter = true;
 	unit = "м2";
 	price = 0;

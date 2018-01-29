@@ -19,11 +19,13 @@ namespace Сommunal {
 	public ref class ServiceManagement : public System::Windows::Forms::Form
 	{
 		DataArray <Tariff> *Services;
+		Tariff *Temp;
 	public:
 		ServiceManagement(void)
 		{
 			InitializeComponent();
 			Services = new DataArray <Tariff>;
+			Temp = new Tariff;
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -40,6 +42,7 @@ namespace Сommunal {
 				delete components;
 			}
 			delete Services;
+			delete Temp;
 		}
 	private: System::Windows::Forms::Button^  button2;
 	protected:
@@ -171,7 +174,6 @@ namespace Сommunal {
 			this->radioButton1->Name = L"radioButton1";
 			this->radioButton1->Size = System::Drawing::Size(64, 17);
 			this->radioButton1->TabIndex = 23;
-			this->radioButton1->TabStop = true;
 			this->radioButton1->Text = L"счётчик";
 			this->radioButton1->UseVisualStyleBackColor = true;
 			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &ServiceManagement::radioButton1_CheckedChanged);
@@ -182,6 +184,7 @@ namespace Сommunal {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(214, 20);
 			this->textBox3->TabIndex = 22;
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &ServiceManagement::textBox3_TextChanged);
 			// 
 			// button3
 			// 
@@ -304,59 +307,74 @@ namespace Сommunal {
 	}
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-		Tariff Temp;
 		if (listBox1->SelectedIndex >= 0)
 		{
-			Temp = Services->GetItem(listBox1->SelectedIndex);
-			String^ t = gcnew String(Temp.GetName().c_str());
-			textBox3->Text = t;
+			*Temp = Services->GetItem(listBox1->SelectedIndex);
+			textBox3->Text = gcnew String(Temp->GetName().c_str());
+			if (Temp->GetIsMeter() == true)
+				radioButton1->PerformClick();
+			else
+				radioButton2->PerformClick();
+			comboBox1->Text = gcnew String(Temp->GetUnit().c_str());
+			textBox7->Text = Temp->GetPrice().ToString();
+			
+			
+			/*Temp = Services->GetItem(listBox1->SelectedIndex);
+			textBox3->Text = gcnew String(Temp.GetName().c_str());
 			if (Temp.GetIsMeter() == true)
 				radioButton1->PerformClick();
 			else
-				radioButton1->PerformClick();
-			t = gcnew String(Temp.GetUnit().c_str());
-			comboBox1->Text = t;
-			textBox7->Text = Temp.GetPrice().ToString();
+				radioButton2->PerformClick();
+			comboBox1->Text = gcnew String(Temp.GetUnit().c_str());
+			textBox7->Text = Temp.GetPrice().ToString();*/
 		}
 	}
 	private: System::Void ServiceManagement_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-		//DataArray <Tariff> Services;
 		Services->LoadFromFile("Service.dat");
 		for (int i = 0; i < Services->GetTop(); i++)
 		{
-			Tariff Temp = Services->GetItem(i);
-			String^ t = gcnew String(Temp.GetName().c_str());
-			listBox1->Items->Add(t);
+			*Temp = Services->GetItem(i);
+			listBox1->Items->Add(gcnew String(Temp->GetName().c_str()));
 		}
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Tariff Temp;
-		String^ t = gcnew String(Temp.GetName().c_str());
 		Services->AddItem(Temp);
-		listBox1->Items->Add(t);
+		listBox1->Items->Add(gcnew String(Temp.GetName().c_str()));
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		Services->RemoveItem(listBox1->SelectedIndex);
-		listBox1->Items->Remove(listBox1->SelectedItem);
+		if (listBox1->SelectedIndex >= 0)
+		{
+			Services->RemoveItem(listBox1->SelectedIndex);
+			listBox1->Items->Remove(listBox1->SelectedItem);
+		}
 	}
 	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Services->SaveToFile("Service.dat");
+		Close();
 	}
 	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-
+		//Temp.SetIsMeter(true);
 	}
 	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-
+		if (listBox1->SelectedIndex >= 0)
+		{
+			Temp->SetIsMeter(false);
+			Services->SetItem(*Temp, listBox1->SelectedIndex);
+		}
 	}
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 	{
 
 	}
-};
+	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	};
 }
