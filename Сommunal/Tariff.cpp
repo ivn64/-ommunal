@@ -4,7 +4,7 @@ Tariff::Tariff()
 {
 	name = "Новый объект";
 	isMeter = true;
-	unit = "";
+	unit = "м2";
 	price = 0;
 }
 Tariff::Tariff(string tempName, bool tempIsMeter, string tempUnit, float tempPrice)

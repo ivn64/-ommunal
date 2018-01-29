@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 
 #include "TariffSelection.h"
 #include "DataArray.h"
 #include "Tariff.h"
 
-namespace Сommunal {
+namespace РЎommunal {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -14,23 +14,24 @@ namespace Сommunal {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для ServiceManagement
+	/// РЎРІРѕРґРєР° РґР»СЏ ServiceManagement
 	/// </summary>
 	public ref class ServiceManagement : public System::Windows::Forms::Form
 	{
-		DataArray <Tariff> *Temp1 = new DataArray <Tariff>;
+		DataArray <Tariff> *Services;
 	public:
 		ServiceManagement(void)
 		{
 			InitializeComponent();
+			Services = new DataArray <Tariff>;
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~ServiceManagement()
 		{
@@ -38,6 +39,7 @@ namespace Сommunal {
 			{
 				delete components;
 			}
+			delete Services;
 		}
 	private: System::Windows::Forms::Button^  button2;
 	protected:
@@ -64,14 +66,14 @@ namespace Сommunal {
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -102,7 +104,7 @@ namespace Сommunal {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(126, 20);
 			this->button2->TabIndex = 32;
-			this->button2->Text = L"выбор тарифа";
+			this->button2->Text = L"РІС‹Р±РѕСЂ С‚Р°СЂРёС„Р°";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &ServiceManagement::button2_Click);
 			// 
@@ -122,8 +124,9 @@ namespace Сommunal {
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(112, 31);
 			this->button5->TabIndex = 29;
-			this->button5->Text = L"Сохранить";
+			this->button5->Text = L"РЎРѕС…СЂР°РЅРёС‚СЊ";
 			this->button5->UseVisualStyleBackColor = false;
+			this->button5->Click += gcnew System::EventHandler(this, &ServiceManagement::button5_Click);
 			// 
 			// button4
 			// 
@@ -134,18 +137,20 @@ namespace Сommunal {
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(112, 31);
 			this->button4->TabIndex = 28;
-			this->button4->Text = L"Отмена";
+			this->button4->Text = L"РћС‚РјРµРЅР°";
 			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &ServiceManagement::button4_Click);
 			// 
 			// comboBox1
 			// 
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"РєР’С‚в‹…С‡", L"Рј2" });
 			this->comboBox1->Location = System::Drawing::Point(297, 85);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(213, 21);
 			this->comboBox1->TabIndex = 27;
-			this->comboBox1->Text = L"м2";
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &ServiceManagement::comboBox1_SelectedIndexChanged);
 			// 
 			// radioButton2
 			// 
@@ -155,8 +160,9 @@ namespace Сommunal {
 			this->radioButton2->Size = System::Drawing::Size(56, 17);
 			this->radioButton2->TabIndex = 24;
 			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"тариф";
+			this->radioButton2->Text = L"С‚Р°СЂРёС„";
 			this->radioButton2->UseVisualStyleBackColor = true;
+			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &ServiceManagement::radioButton2_CheckedChanged);
 			// 
 			// radioButton1
 			// 
@@ -166,8 +172,9 @@ namespace Сommunal {
 			this->radioButton1->Size = System::Drawing::Size(64, 17);
 			this->radioButton1->TabIndex = 23;
 			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"счётчик";
+			this->radioButton1->Text = L"СЃС‡С‘С‚С‡РёРє";
 			this->radioButton1->UseVisualStyleBackColor = true;
+			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &ServiceManagement::radioButton1_CheckedChanged);
 			// 
 			// textBox3
 			// 
@@ -185,8 +192,9 @@ namespace Сommunal {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(88, 31);
 			this->button3->TabIndex = 20;
-			this->button3->Text = L"Удалить";
+			this->button3->Text = L"РЈРґР°Р»РёС‚СЊ";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &ServiceManagement::button3_Click);
 			// 
 			// button1
 			// 
@@ -197,7 +205,7 @@ namespace Сommunal {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(88, 31);
 			this->button1->TabIndex = 19;
-			this->button1->Text = L"Добавить";
+			this->button1->Text = L"Р”РѕР±Р°РІРёС‚СЊ";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &ServiceManagement::button1_Click);
 			// 
@@ -217,7 +225,7 @@ namespace Сommunal {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(74, 13);
 			this->label1->TabIndex = 33;
-			this->label1->Text = L"Список услуг";
+			this->label1->Text = L"РЎРїРёСЃРѕРє СѓСЃР»СѓРі";
 			// 
 			// label2
 			// 
@@ -226,7 +234,7 @@ namespace Сommunal {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(43, 13);
 			this->label2->TabIndex = 34;
-			this->label2->Text = L"Услуга";
+			this->label2->Text = L"РЈСЃР»СѓРіР°";
 			// 
 			// label3
 			// 
@@ -235,7 +243,7 @@ namespace Сommunal {
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(76, 13);
 			this->label3->TabIndex = 35;
-			this->label3->Text = L"Тарификация";
+			this->label3->Text = L"РўР°СЂРёС„РёРєР°С†РёСЏ";
 			// 
 			// label4
 			// 
@@ -244,7 +252,7 @@ namespace Сommunal {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(82, 13);
 			this->label4->TabIndex = 36;
-			this->label4->Text = L"Ед. измерения";
+			this->label4->Text = L"Р•Рґ. РёР·РјРµСЂРµРЅРёСЏ";
 			// 
 			// label5
 			// 
@@ -253,7 +261,7 @@ namespace Сommunal {
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(95, 13);
 			this->label5->TabIndex = 37;
-			this->label5->Text = L"Стоимость за ед.";
+			this->label5->Text = L"РЎС‚РѕРёРјРѕСЃС‚СЊ Р·Р° РµРґ.";
 			// 
 			// ServiceManagement
 			// 
@@ -278,7 +286,7 @@ namespace Сommunal {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->listBox1);
 			this->Name = L"ServiceManagement";
-			this->Text = L"Управление услугами";
+			this->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ СѓСЃР»СѓРіР°РјРё";
 			this->Load += gcnew System::EventHandler(this, &ServiceManagement::ServiceManagement_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -296,26 +304,59 @@ namespace Сommunal {
 	}
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		Tariff Temp;
+		if (listBox1->SelectedIndex >= 0)
+		{
+			Temp = Services->GetItem(listBox1->SelectedIndex);
+			String^ t = gcnew String(Temp.GetName().c_str());
+			textBox3->Text = t;
+			if (Temp.GetIsMeter() == true)
+				radioButton1->PerformClick();
+			else
+				radioButton1->PerformClick();
+			t = gcnew String(Temp.GetUnit().c_str());
+			comboBox1->Text = t;
+			textBox7->Text = Temp.GetPrice().ToString();
+		}
 	}
 	private: System::Void ServiceManagement_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-		DataArray <Tariff> Services;
-		Services.LoadFromFile("Service.dat");
-		for (int i = 0; i < Services.GetTop(); i++)
+		//DataArray <Tariff> Services;
+		Services->LoadFromFile("Service.dat");
+		for (int i = 0; i < Services->GetTop(); i++)
 		{
-			Tariff Temp = Services.GetItem(i);
+			Tariff Temp = Services->GetItem(i);
 			String^ t = gcnew String(Temp.GetName().c_str());
 			listBox1->Items->Add(t);
 		}
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		
 		Tariff Temp;
 		String^ t = gcnew String(Temp.GetName().c_str());
-		DataArray <Tariff> DataTemp;
-		DataTemp.AddItem(Temp);
+		Services->AddItem(Temp);
 		listBox1->Items->Add(t);
 	}
-	};
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Services->RemoveItem(listBox1->SelectedIndex);
+		listBox1->Items->Remove(listBox1->SelectedItem);
+	}
+	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Services->SaveToFile("Service.dat");
+	}
+	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+
+	}
+	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+
+	}
+	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+	{
+
+	}
+};
 }
