@@ -5,8 +5,11 @@
 #include "ServiceManagement.h"
 #include "HousesManagement.h"
 #include "Graph.h"
+#include "House.h"
+#include "DataArray.h"
+#include "MyFunctions.h"
 
-namespace Сommunal 
+namespace Сommunal
 {
 
 	using namespace System;
@@ -21,10 +24,14 @@ namespace Сommunal
 	/// </summary>
 	public ref class MainWindow : public System::Windows::Forms::Form
 	{
+		DataArray <House> *HouseArray;
+		House *Temp1;
 	public:
 		MainWindow(void)
 		{
 			InitializeComponent();
+			HouseArray = new DataArray <House>;
+			Temp1 = new House;
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -40,13 +47,21 @@ namespace Сommunal
 			{
 				delete components;
 			}
+			//delete HouseArray;
+			delete Temp1;
 		}
-	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::ComboBox^  housesComboBox;
+	private: System::Windows::Forms::Button^  exportButton;
 	protected:
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button2;
+
+	protected:
+
+	private: System::Windows::Forms::Button^  housesButton;
+	private: System::Windows::Forms::Button^  graphButton;
+
+
+	private: System::Windows::Forms::Button^  servicesButton;
+
 
 	private:
 		/// <summary>
@@ -61,73 +76,74 @@ namespace Сommunal
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->housesComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->exportButton = (gcnew System::Windows::Forms::Button());
+			this->housesButton = (gcnew System::Windows::Forms::Button());
+			this->graphButton = (gcnew System::Windows::Forms::Button());
+			this->servicesButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// comboBox1
+			// housesComboBox
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(109, 14);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(141, 21);
-			this->comboBox1->TabIndex = 15;
+			this->housesComboBox->FormattingEnabled = true;
+			this->housesComboBox->Location = System::Drawing::Point(109, 14);
+			this->housesComboBox->Name = L"housesComboBox";
+			this->housesComboBox->Size = System::Drawing::Size(141, 21);
+			this->housesComboBox->TabIndex = 15;
 			// 
-			// button5
+			// exportButton
 			// 
-			this->button5->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->FlatAppearance->BorderSize = 0;
-			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button5->Location = System::Drawing::Point(256, 12);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(91, 54);
-			this->button5->TabIndex = 14;
-			this->button5->Text = L"Экспорт в excel";
-			this->button5->UseVisualStyleBackColor = false;
+			this->exportButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->exportButton->FlatAppearance->BorderSize = 0;
+			this->exportButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->exportButton->Location = System::Drawing::Point(256, 12);
+			this->exportButton->Name = L"exportButton";
+			this->exportButton->Size = System::Drawing::Size(91, 54);
+			this->exportButton->TabIndex = 14;
+			this->exportButton->Text = L"Экспорт в excel";
+			this->exportButton->UseVisualStyleBackColor = false;
+			this->exportButton->Click += gcnew System::EventHandler(this, &MainWindow::exportButton_Click);
 			// 
-			// button4
+			// housesButton
 			// 
-			this->button4->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Location = System::Drawing::Point(109, 41);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(141, 25);
-			this->button4->TabIndex = 13;
-			this->button4->Text = L"Управление объектами";
-			this->button4->UseVisualStyleBackColor = false;
-			this->button4->Click += gcnew System::EventHandler(this, &MainWindow::button4_Click);
+			this->housesButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->housesButton->FlatAppearance->BorderSize = 0;
+			this->housesButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->housesButton->Location = System::Drawing::Point(109, 41);
+			this->housesButton->Name = L"housesButton";
+			this->housesButton->Size = System::Drawing::Size(141, 25);
+			this->housesButton->TabIndex = 13;
+			this->housesButton->Text = L"Управление объектами";
+			this->housesButton->UseVisualStyleBackColor = false;
+			this->housesButton->Click += gcnew System::EventHandler(this, &MainWindow::housesButton_Click);
 			// 
-			// button3
+			// graphButton
 			// 
-			this->button3->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->FlatAppearance->BorderSize = 0;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Location = System::Drawing::Point(353, 12);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(91, 54);
-			this->button3->TabIndex = 12;
-			this->button3->Text = L"График";
-			this->button3->UseVisualStyleBackColor = false;
-			this->button3->Click += gcnew System::EventHandler(this, &MainWindow::button3_Click);
+			this->graphButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->graphButton->FlatAppearance->BorderSize = 0;
+			this->graphButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->graphButton->Location = System::Drawing::Point(353, 12);
+			this->graphButton->Name = L"graphButton";
+			this->graphButton->Size = System::Drawing::Size(91, 54);
+			this->graphButton->TabIndex = 12;
+			this->graphButton->Text = L"График";
+			this->graphButton->UseVisualStyleBackColor = false;
+			this->graphButton->Click += gcnew System::EventHandler(this, &MainWindow::graphButton_Click);
 			// 
-			// button2
+			// servicesButton
 			// 
-			this->button2->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->Cursor = System::Windows::Forms::Cursors::Default;
-			this->button2->FlatAppearance->BorderSize = 0;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->button2->Location = System::Drawing::Point(12, 12);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(91, 54);
-			this->button2->TabIndex = 11;
-			this->button2->Text = L"Управление услугами";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &MainWindow::button2_Click);
+			this->servicesButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->servicesButton->Cursor = System::Windows::Forms::Cursors::Default;
+			this->servicesButton->FlatAppearance->BorderSize = 0;
+			this->servicesButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->servicesButton->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->servicesButton->Location = System::Drawing::Point(12, 12);
+			this->servicesButton->Name = L"servicesButton";
+			this->servicesButton->Size = System::Drawing::Size(91, 54);
+			this->servicesButton->TabIndex = 11;
+			this->servicesButton->Text = L"Управление услугами";
+			this->servicesButton->UseVisualStyleBackColor = false;
+			this->servicesButton->Click += gcnew System::EventHandler(this, &MainWindow::servicesButton_Click);
 			// 
 			// MainWindow
 			// 
@@ -136,31 +152,49 @@ namespace Сommunal
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->ClientSize = System::Drawing::Size(458, 356);
-			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->housesComboBox);
+			this->Controls->Add(this->exportButton);
+			this->Controls->Add(this->housesButton);
+			this->Controls->Add(this->graphButton);
+			this->Controls->Add(this->servicesButton);
 			this->Name = L"MainWindow";
 			this->Text = L"MainWindow";
+			this->Activated += gcnew System::EventHandler(this, &MainWindow::MainWindow_Activated);
+			this->Deactivate += gcnew System::EventHandler(this, &MainWindow::MainWindow_Deactivate);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
-{
-	ServiceManagement^ OpenWindow = gcnew ServiceManagement;
-	OpenWindow->ShowDialog();
-}
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
-{
-	HousesManagement^ HousesManagementWindow = gcnew HousesManagement;
-	HousesManagementWindow->ShowDialog();
-}
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) 
-{
-	Graph^ GraphWindow = gcnew Graph;
-	GraphWindow->ShowDialog();
-}
-};
+	private: System::Void servicesButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		ServiceManagement^ OpenWindow = gcnew ServiceManagement;
+		OpenWindow->ShowDialog();
+	}
+	private: System::Void housesButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		HousesManagement^ HousesManagementWindow = gcnew HousesManagement;
+		HousesManagementWindow->ShowDialog();
+	}
+	private: System::Void graphButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Graph^ GraphWindow = gcnew Graph;
+		GraphWindow->ShowDialog();
+	}
+	private: System::Void exportButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+	}
+	private: System::Void MainWindow_Activated(System::Object^  sender, System::EventArgs^  e)
+	{
+		HouseArray->LoadFromFile("Heuses.dat");
+		for (int i = 0; i < HouseArray->GetTop(); i++)
+		{
+			*Temp1 = HouseArray->GetItem(i);
+			housesComboBox->Items->Add(StlStringToSystemString(Temp1->GetName()));
+		}
+	}
+	private: System::Void MainWindow_Deactivate(System::Object^  sender, System::EventArgs^  e)
+	{
+		housesComboBox->Items->Clear();
+	}
+	};
 }

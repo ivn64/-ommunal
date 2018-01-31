@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
-
-using namespace std;
+#include "House.h"
+#include "DataArray.h"
+#include "MyFunctions.h"
 
 namespace Сommunal
 {
@@ -19,10 +19,14 @@ namespace Сommunal
 	/// </summary>
 	public ref class HousesManagement : public System::Windows::Forms::Form
 	{
+		DataArray <House> *HousesArray;
+		House *Temp;
 	public:
 		HousesManagement(void)
 		{
 			InitializeComponent();
+			HousesArray = new DataArray <House>;
+			Temp = new House;
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -38,25 +42,22 @@ namespace Сommunal
 			{
 				delete components;
 			}
+			delete HousesArray;
+			delete Temp;
 		}
-	private: System::Windows::Forms::RadioButton^  radioButton2;
+	private: System::Windows::Forms::RadioButton^  privateHouseRadioButton;
 	protected:
-	private: System::Windows::Forms::RadioButton^  radioButton1;
-	private: System::Windows::Forms::TextBox^  textBox8;
-
-	private: System::Windows::Forms::TextBox^  textBox6;
-
-	private: System::Windows::Forms::TextBox^  textBox4;
-
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::TextBox^  textBox3;
-
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button1;
-
-	private: System::Windows::Forms::ListBox^  listBox1;
-
+	private: System::Windows::Forms::RadioButton^  apartmentHouseRadioButton;
+	private: System::Windows::Forms::TextBox^  numberOfPeoplesTextBox;
+	protected:
+	private: System::Windows::Forms::TextBox^  totalAreaTextBox;
+	private: System::Windows::Forms::TextBox^  adressTextBox;
+	private: System::Windows::Forms::Button^  saveButton;
+	private: System::Windows::Forms::Button^  cancelButton;
+	private: System::Windows::Forms::TextBox^  descriptionTextBox;
+	private: System::Windows::Forms::Button^  deleteButton;
+	private: System::Windows::Forms::Button^  addButton;
+	private: System::Windows::Forms::ListBox^  housesListBox;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label4;
@@ -76,17 +77,17 @@ namespace Сommunal
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->privateHouseRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->apartmentHouseRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->numberOfPeoplesTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->totalAreaTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->adressTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->saveButton = (gcnew System::Windows::Forms::Button());
+			this->cancelButton = (gcnew System::Windows::Forms::Button());
+			this->descriptionTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->deleteButton = (gcnew System::Windows::Forms::Button());
+			this->addButton = (gcnew System::Windows::Forms::Button());
+			this->housesListBox = (gcnew System::Windows::Forms::ListBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -94,117 +95,122 @@ namespace Сommunal
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// radioButton2
+			// privateHouseRadioButton
 			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(346, 151);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(90, 17);
-			this->radioButton2->TabIndex = 50;
-			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"частный дом";
-			this->radioButton2->UseVisualStyleBackColor = true;
-			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &HousesManagement::radioButton2_CheckedChanged);
+			this->privateHouseRadioButton->AutoSize = true;
+			this->privateHouseRadioButton->Location = System::Drawing::Point(346, 151);
+			this->privateHouseRadioButton->Name = L"privateHouseRadioButton";
+			this->privateHouseRadioButton->Size = System::Drawing::Size(90, 17);
+			this->privateHouseRadioButton->TabIndex = 50;
+			this->privateHouseRadioButton->TabStop = true;
+			this->privateHouseRadioButton->Text = L"частный дом";
+			this->privateHouseRadioButton->UseVisualStyleBackColor = true;
+			this->privateHouseRadioButton->Click += gcnew System::EventHandler(this, &HousesManagement::privateHouseRadioButton_Click);
 			// 
-			// radioButton1
+			// apartmentHouseRadioButton
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Location = System::Drawing::Point(200, 152);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(140, 17);
-			this->radioButton1->TabIndex = 49;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"многоквартирный дом";
-			this->radioButton1->UseVisualStyleBackColor = true;
-			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &HousesManagement::radioButton1_CheckedChanged);
+			this->apartmentHouseRadioButton->AutoSize = true;
+			this->apartmentHouseRadioButton->Location = System::Drawing::Point(200, 152);
+			this->apartmentHouseRadioButton->Name = L"apartmentHouseRadioButton";
+			this->apartmentHouseRadioButton->Size = System::Drawing::Size(140, 17);
+			this->apartmentHouseRadioButton->TabIndex = 49;
+			this->apartmentHouseRadioButton->TabStop = true;
+			this->apartmentHouseRadioButton->Text = L"многоквартирный дом";
+			this->apartmentHouseRadioButton->UseVisualStyleBackColor = true;
+			this->apartmentHouseRadioButton->Click += gcnew System::EventHandler(this, &HousesManagement::apartmentHouseRadioButton_Click);
 			// 
-			// textBox8
+			// numberOfPeoplesTextBox
 			// 
-			this->textBox8->Location = System::Drawing::Point(427, 125);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(103, 20);
-			this->textBox8->TabIndex = 48;
+			this->numberOfPeoplesTextBox->Location = System::Drawing::Point(427, 125);
+			this->numberOfPeoplesTextBox->Name = L"numberOfPeoplesTextBox";
+			this->numberOfPeoplesTextBox->Size = System::Drawing::Size(103, 20);
+			this->numberOfPeoplesTextBox->TabIndex = 48;
+			this->numberOfPeoplesTextBox->TextChanged += gcnew System::EventHandler(this, &HousesManagement::numberOfPeoplesTextBox_TextChanged);
 			// 
-			// textBox6
+			// totalAreaTextBox
 			// 
-			this->textBox6->Location = System::Drawing::Point(312, 99);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(218, 20);
-			this->textBox6->TabIndex = 46;
+			this->totalAreaTextBox->Location = System::Drawing::Point(312, 99);
+			this->totalAreaTextBox->Name = L"totalAreaTextBox";
+			this->totalAreaTextBox->Size = System::Drawing::Size(218, 20);
+			this->totalAreaTextBox->TabIndex = 46;
+			this->totalAreaTextBox->TextChanged += gcnew System::EventHandler(this, &HousesManagement::totalAreaTextBox_TextChanged);
 			// 
-			// textBox4
+			// adressTextBox
 			// 
-			this->textBox4->Location = System::Drawing::Point(312, 73);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(218, 20);
-			this->textBox4->TabIndex = 44;
+			this->adressTextBox->Location = System::Drawing::Point(312, 73);
+			this->adressTextBox->Name = L"adressTextBox";
+			this->adressTextBox->Size = System::Drawing::Size(218, 20);
+			this->adressTextBox->TabIndex = 44;
+			this->adressTextBox->TextChanged += gcnew System::EventHandler(this, &HousesManagement::adressTextBox_TextChanged);
 			// 
-			// button5
+			// saveButton
 			// 
-			this->button5->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->FlatAppearance->BorderSize = 0;
-			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button5->Location = System::Drawing::Point(309, 175);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(112, 31);
-			this->button5->TabIndex = 42;
-			this->button5->Text = L"Сохранить";
-			this->button5->UseVisualStyleBackColor = false;
+			this->saveButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->saveButton->FlatAppearance->BorderSize = 0;
+			this->saveButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->saveButton->Location = System::Drawing::Point(309, 175);
+			this->saveButton->Name = L"saveButton";
+			this->saveButton->Size = System::Drawing::Size(112, 31);
+			this->saveButton->TabIndex = 42;
+			this->saveButton->Text = L"Сохранить";
+			this->saveButton->UseVisualStyleBackColor = false;
+			this->saveButton->Click += gcnew System::EventHandler(this, &HousesManagement::saveButton_Click);
 			// 
-			// button4
+			// cancelButton
 			// 
-			this->button4->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Location = System::Drawing::Point(427, 175);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(112, 31);
-			this->button4->TabIndex = 41;
-			this->button4->Text = L"Отмена";
-			this->button4->UseVisualStyleBackColor = false;
-			this->button4->Click += gcnew System::EventHandler(this, &HousesManagement::button4_Click);
+			this->cancelButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->cancelButton->FlatAppearance->BorderSize = 0;
+			this->cancelButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cancelButton->Location = System::Drawing::Point(427, 175);
+			this->cancelButton->Name = L"cancelButton";
+			this->cancelButton->Size = System::Drawing::Size(112, 31);
+			this->cancelButton->TabIndex = 41;
+			this->cancelButton->Text = L"Отмена";
+			this->cancelButton->UseVisualStyleBackColor = false;
+			this->cancelButton->Click += gcnew System::EventHandler(this, &HousesManagement::cancelButton_Click);
 			// 
-			// textBox3
+			// descriptionTextBox
 			// 
-			this->textBox3->Location = System::Drawing::Point(312, 47);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(218, 20);
-			this->textBox3->TabIndex = 40;
-			this->textBox3->TextChanged += gcnew System::EventHandler(this, &HousesManagement::textBox3_TextChanged);
+			this->descriptionTextBox->Location = System::Drawing::Point(312, 47);
+			this->descriptionTextBox->Name = L"descriptionTextBox";
+			this->descriptionTextBox->Size = System::Drawing::Size(218, 20);
+			this->descriptionTextBox->TabIndex = 40;
+			this->descriptionTextBox->TextChanged += gcnew System::EventHandler(this, &HousesManagement::descriptionTextBox_TextChanged);
 			// 
-			// button3
+			// deleteButton
 			// 
-			this->button3->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->FlatAppearance->BorderSize = 0;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Location = System::Drawing::Point(105, 175);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(89, 31);
-			this->button3->TabIndex = 38;
-			this->button3->Text = L"Удалить";
-			this->button3->UseVisualStyleBackColor = false;
+			this->deleteButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->deleteButton->FlatAppearance->BorderSize = 0;
+			this->deleteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->deleteButton->Location = System::Drawing::Point(105, 175);
+			this->deleteButton->Name = L"deleteButton";
+			this->deleteButton->Size = System::Drawing::Size(89, 31);
+			this->deleteButton->TabIndex = 38;
+			this->deleteButton->Text = L"Удалить";
+			this->deleteButton->UseVisualStyleBackColor = false;
+			this->deleteButton->Click += gcnew System::EventHandler(this, &HousesManagement::deleteButton_Click);
 			// 
-			// button1
+			// addButton
 			// 
-			this->button1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Location = System::Drawing::Point(12, 175);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(87, 31);
-			this->button1->TabIndex = 37;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = false;
+			this->addButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->addButton->FlatAppearance->BorderSize = 0;
+			this->addButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->addButton->Location = System::Drawing::Point(12, 175);
+			this->addButton->Name = L"addButton";
+			this->addButton->Size = System::Drawing::Size(87, 31);
+			this->addButton->TabIndex = 37;
+			this->addButton->Text = L"Добавить";
+			this->addButton->UseVisualStyleBackColor = false;
+			this->addButton->Click += gcnew System::EventHandler(this, &HousesManagement::addButton_Click);
 			// 
-			// listBox1
+			// housesListBox
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"1", L"2", L"3", L"4" });
-			this->listBox1->Location = System::Drawing::Point(12, 47);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(182, 121);
-			this->listBox1->TabIndex = 35;
-			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &HousesManagement::listBox1_SelectedIndexChanged);
+			this->housesListBox->FormattingEnabled = true;
+			this->housesListBox->Location = System::Drawing::Point(12, 47);
+			this->housesListBox->Name = L"housesListBox";
+			this->housesListBox->Size = System::Drawing::Size(182, 121);
+			this->housesListBox->TabIndex = 35;
+			this->housesListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &HousesManagement::housesListBox_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -232,7 +238,6 @@ namespace Сommunal
 			this->label4->Size = System::Drawing::Size(90, 13);
 			this->label4->TabIndex = 54;
 			this->label4->Text = L"Общая площадь";
-			this->label4->Click += gcnew System::EventHandler(this, &HousesManagement::label4_Click);
 			// 
 			// label5
 			// 
@@ -263,17 +268,17 @@ namespace Сommunal
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->radioButton2);
-			this->Controls->Add(this->radioButton1);
-			this->Controls->Add(this->textBox8);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->privateHouseRadioButton);
+			this->Controls->Add(this->apartmentHouseRadioButton);
+			this->Controls->Add(this->numberOfPeoplesTextBox);
+			this->Controls->Add(this->totalAreaTextBox);
+			this->Controls->Add(this->adressTextBox);
+			this->Controls->Add(this->saveButton);
+			this->Controls->Add(this->cancelButton);
+			this->Controls->Add(this->descriptionTextBox);
+			this->Controls->Add(this->deleteButton);
+			this->Controls->Add(this->addButton);
+			this->Controls->Add(this->housesListBox);
 			this->Name = L"HousesManagement";
 			this->Text = L"HousesManagement";
 			this->Load += gcnew System::EventHandler(this, &HousesManagement::HousesManagement_Load);
@@ -282,49 +287,101 @@ namespace Сommunal
 
 		}
 #pragma endregion
-	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void HousesManagement_Load(System::Object^  sender, System::EventArgs^  e)
+	{
+		HousesArray->LoadFromFile("Heuses.dat");
+		for (int i = 0; i < HousesArray->GetTop(); i++)
+		{
+			*Temp = HousesArray->GetItem(i);
+			housesListBox->Items->Add(StlStringToSystemString(Temp->GetName()));
+		}
+	}
+	private: System::Void addButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		HousesArray->AddItem(*Temp);
+		housesListBox->Items->Add(StlStringToSystemString(Temp->GetName()));
+	}
+	private: System::Void deleteButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			HousesArray->RemoveItem(housesListBox->SelectedIndex);
+			housesListBox->Items->Remove(housesListBox->SelectedItem);
+		}
+	}
+	private: System::Void saveButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		HousesArray->SaveToFile("Heuses.dat");
+		Close();
+	}
+	private: System::Void cancelButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Close();
 	}
-	private: System::Void HousesManagement_Load(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void descriptionTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-		listBox1->Items->Add("hello");
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetName(SystemStringToStlString(descriptionTextBox->Text));
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+			housesListBox->Items[housesListBox->SelectedIndex] = descriptionTextBox->Text;
+		}
 	}
-	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void housesListBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			*Temp = HousesArray->GetItem(housesListBox->SelectedIndex);
+			descriptionTextBox->Text = StlStringToSystemString(Temp->GetName());
+			adressTextBox->Text = StlStringToSystemString(Temp->GetAdress());
+			totalAreaTextBox->Text = Temp->GetTotalArea().ToString();
+			numberOfPeoplesTextBox->Text = Temp->GetNumberOfPeoples().ToString();
+			if (Temp->GetIsPrivate() == true)
+				privateHouseRadioButton->PerformClick();
+			else
+				apartmentHouseRadioButton->PerformClick();
+		}
 	}
-	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void adressTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetAdress(SystemStringToStlString(adressTextBox->Text));
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+		}
 	}
-	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void totalAreaTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetTotalArea(SystemStringToFloat(totalAreaTextBox->Text));
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+		}
 	}
-	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void numberOfPeoplesTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetNumberOfPeoples(SystemStringToInt(numberOfPeoplesTextBox->Text));
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+		}
 	}
-	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void apartmentHouseRadioButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetIsPrivate(false);
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+		}
 	}
-	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
-	{
-		//String^ str = gcnew String("Hello World");
 
-		string yu = "Hi";
-		
-		String^ str = gcnew String(yu.c_str());
-
-		/*char c[] = "Hello world!";
-		String^ str = gcnew String(c);
-		textBox3->Text = str;*/
-
-
-
-		if (listBox1->Items[0] == "1")
-			textBox4->Text = "232321";
-		if (listBox1->SelectedIndex >= 0)
-			if (listBox1->Items[listBox1->SelectedIndex] == "1")
-				textBox6->Text = "Hreee232321";
-		textBox3->Text = str;
+	private: System::Void privateHouseRadioButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (housesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetIsPrivate(true);
+			HousesArray->SetItem(*Temp, housesListBox->SelectedIndex);
+		}
 	}
 	};
 }

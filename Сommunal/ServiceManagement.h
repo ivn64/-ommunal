@@ -3,6 +3,7 @@
 #include "TariffSelection.h"
 #include "DataArray.h"
 #include "Tariff.h"
+#include "MyFunctions.h"
 
 namespace Сommunal {
 
@@ -44,23 +45,38 @@ namespace Сommunal {
 			delete Services;
 			delete Temp;
 		}
-	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  tariffSelectButton;
 	protected:
-	private: System::Windows::Forms::TextBox^  textBox7;
 
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::TextBox^  priceTextBox;
+	private: System::Windows::Forms::Button^  saveButton;
+	private: System::Windows::Forms::Button^  cancelButton;
 
 
-	private: System::Windows::Forms::RadioButton^  radioButton2;
-	private: System::Windows::Forms::RadioButton^  radioButton1;
-	private: System::Windows::Forms::TextBox^  textBox3;
+	protected:
 
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button1;
 
-	private: System::Windows::Forms::ListBox^  listBox1;
+
+
+	private: System::Windows::Forms::ComboBox^  unitComboBox;
+	private: System::Windows::Forms::RadioButton^  tariffRadioButton;
+
+
+
+
+	private: System::Windows::Forms::RadioButton^  meterRadioButton;
+
+	private: System::Windows::Forms::TextBox^  serviceTextBox;
+	private: System::Windows::Forms::Button^  deleteButton;
+
+
+
+	private: System::Windows::Forms::Button^  addButton;
+	private: System::Windows::Forms::ListBox^  servicesListBox;
+
+
+
+
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
@@ -80,17 +96,17 @@ namespace Сommunal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->tariffSelectButton = (gcnew System::Windows::Forms::Button());
+			this->priceTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->saveButton = (gcnew System::Windows::Forms::Button());
+			this->cancelButton = (gcnew System::Windows::Forms::Button());
+			this->unitComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->tariffRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->meterRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->serviceTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->deleteButton = (gcnew System::Windows::Forms::Button());
+			this->addButton = (gcnew System::Windows::Forms::Button());
+			this->servicesListBox = (gcnew System::Windows::Forms::ListBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -98,128 +114,129 @@ namespace Сommunal {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// button2
+			// tariffSelectButton
 			// 
-			this->button2->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->FlatAppearance->BorderSize = 0;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Location = System::Drawing::Point(384, 112);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(126, 20);
-			this->button2->TabIndex = 32;
-			this->button2->Text = L"выбор тарифа";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &ServiceManagement::button2_Click);
+			this->tariffSelectButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->tariffSelectButton->FlatAppearance->BorderSize = 0;
+			this->tariffSelectButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->tariffSelectButton->Location = System::Drawing::Point(384, 112);
+			this->tariffSelectButton->Name = L"tariffSelectButton";
+			this->tariffSelectButton->Size = System::Drawing::Size(126, 20);
+			this->tariffSelectButton->TabIndex = 32;
+			this->tariffSelectButton->Text = L"выбор тарифа";
+			this->tariffSelectButton->UseVisualStyleBackColor = false;
+			this->tariffSelectButton->Click += gcnew System::EventHandler(this, &ServiceManagement::tariffSelectButton_Click);
 			// 
-			// textBox7
+			// priceTextBox
 			// 
-			this->textBox7->Location = System::Drawing::Point(296, 112);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(81, 20);
-			this->textBox7->TabIndex = 31;
+			this->priceTextBox->Location = System::Drawing::Point(296, 112);
+			this->priceTextBox->Name = L"priceTextBox";
+			this->priceTextBox->Size = System::Drawing::Size(81, 20);
+			this->priceTextBox->TabIndex = 31;
+			this->priceTextBox->TextChanged += gcnew System::EventHandler(this, &ServiceManagement::priceTextBox_TextChanged_1);
 			// 
-			// button5
+			// saveButton
 			// 
-			this->button5->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->FlatAppearance->BorderSize = 0;
-			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button5->Location = System::Drawing::Point(280, 176);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(112, 31);
-			this->button5->TabIndex = 29;
-			this->button5->Text = L"Сохранить";
-			this->button5->UseVisualStyleBackColor = false;
-			this->button5->Click += gcnew System::EventHandler(this, &ServiceManagement::button5_Click);
+			this->saveButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->saveButton->FlatAppearance->BorderSize = 0;
+			this->saveButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->saveButton->Location = System::Drawing::Point(280, 176);
+			this->saveButton->Name = L"saveButton";
+			this->saveButton->Size = System::Drawing::Size(112, 31);
+			this->saveButton->TabIndex = 29;
+			this->saveButton->Text = L"Сохранить";
+			this->saveButton->UseVisualStyleBackColor = false;
+			this->saveButton->Click += gcnew System::EventHandler(this, &ServiceManagement::saveButton_Click);
 			// 
-			// button4
+			// cancelButton
 			// 
-			this->button4->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Location = System::Drawing::Point(398, 176);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(112, 31);
-			this->button4->TabIndex = 28;
-			this->button4->Text = L"Отмена";
-			this->button4->UseVisualStyleBackColor = false;
-			this->button4->Click += gcnew System::EventHandler(this, &ServiceManagement::button4_Click);
+			this->cancelButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->cancelButton->FlatAppearance->BorderSize = 0;
+			this->cancelButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cancelButton->Location = System::Drawing::Point(398, 176);
+			this->cancelButton->Name = L"cancelButton";
+			this->cancelButton->Size = System::Drawing::Size(112, 31);
+			this->cancelButton->TabIndex = 28;
+			this->cancelButton->Text = L"Отмена";
+			this->cancelButton->UseVisualStyleBackColor = false;
+			this->cancelButton->Click += gcnew System::EventHandler(this, &ServiceManagement::cancelButton_Click);
 			// 
-			// comboBox1
+			// unitComboBox
 			// 
-			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"кВт⋅ч", L"м2" });
-			this->comboBox1->Location = System::Drawing::Point(297, 85);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(213, 21);
-			this->comboBox1->TabIndex = 27;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &ServiceManagement::comboBox1_SelectedIndexChanged);
+			this->unitComboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->unitComboBox->FormattingEnabled = true;
+			this->unitComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"кВт*ч", L"м2", L"м3" });
+			this->unitComboBox->Location = System::Drawing::Point(297, 85);
+			this->unitComboBox->Name = L"unitComboBox";
+			this->unitComboBox->Size = System::Drawing::Size(213, 21);
+			this->unitComboBox->TabIndex = 27;
+			this->unitComboBox->SelectionChangeCommitted += gcnew System::EventHandler(this, &ServiceManagement::unitComboBox_SelectionChangeCommitted);
 			// 
-			// radioButton2
+			// tariffRadioButton
 			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(384, 61);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(56, 17);
-			this->radioButton2->TabIndex = 24;
-			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"тариф";
-			this->radioButton2->UseVisualStyleBackColor = true;
-			this->radioButton2->Click += gcnew System::EventHandler(this, &ServiceManagement::radioButton2_Click);
+			this->tariffRadioButton->AutoSize = true;
+			this->tariffRadioButton->Location = System::Drawing::Point(384, 61);
+			this->tariffRadioButton->Name = L"tariffRadioButton";
+			this->tariffRadioButton->Size = System::Drawing::Size(56, 17);
+			this->tariffRadioButton->TabIndex = 24;
+			this->tariffRadioButton->TabStop = true;
+			this->tariffRadioButton->Text = L"тариф";
+			this->tariffRadioButton->UseVisualStyleBackColor = true;
+			this->tariffRadioButton->Click += gcnew System::EventHandler(this, &ServiceManagement::tariffRadioButton_Click);
 			// 
-			// radioButton1
+			// meterRadioButton
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Location = System::Drawing::Point(296, 61);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(64, 17);
-			this->radioButton1->TabIndex = 23;
-			this->radioButton1->Text = L"счётчик";
-			this->radioButton1->UseVisualStyleBackColor = true;
-			this->radioButton1->Click += gcnew System::EventHandler(this, &ServiceManagement::radioButton1_Click);
+			this->meterRadioButton->AutoSize = true;
+			this->meterRadioButton->Location = System::Drawing::Point(296, 61);
+			this->meterRadioButton->Name = L"meterRadioButton";
+			this->meterRadioButton->Size = System::Drawing::Size(64, 17);
+			this->meterRadioButton->TabIndex = 23;
+			this->meterRadioButton->Text = L"счётчик";
+			this->meterRadioButton->UseVisualStyleBackColor = true;
+			this->meterRadioButton->Click += gcnew System::EventHandler(this, &ServiceManagement::meterRadioButton_Click);
 			// 
-			// textBox3
+			// serviceTextBox
 			// 
-			this->textBox3->Location = System::Drawing::Point(296, 35);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(214, 20);
-			this->textBox3->TabIndex = 22;
-			this->textBox3->TextChanged += gcnew System::EventHandler(this, &ServiceManagement::textBox3_TextChanged);
+			this->serviceTextBox->Location = System::Drawing::Point(296, 35);
+			this->serviceTextBox->Name = L"serviceTextBox";
+			this->serviceTextBox->Size = System::Drawing::Size(214, 20);
+			this->serviceTextBox->TabIndex = 22;
+			this->serviceTextBox->TextChanged += gcnew System::EventHandler(this, &ServiceManagement::serviceTextBox_TextChanged);
 			// 
-			// button3
+			// deleteButton
 			// 
-			this->button3->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->FlatAppearance->BorderSize = 0;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Location = System::Drawing::Point(106, 176);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(88, 31);
-			this->button3->TabIndex = 20;
-			this->button3->Text = L"Удалить";
-			this->button3->UseVisualStyleBackColor = false;
-			this->button3->Click += gcnew System::EventHandler(this, &ServiceManagement::button3_Click);
+			this->deleteButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->deleteButton->FlatAppearance->BorderSize = 0;
+			this->deleteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->deleteButton->Location = System::Drawing::Point(106, 176);
+			this->deleteButton->Name = L"deleteButton";
+			this->deleteButton->Size = System::Drawing::Size(88, 31);
+			this->deleteButton->TabIndex = 20;
+			this->deleteButton->Text = L"Удалить";
+			this->deleteButton->UseVisualStyleBackColor = false;
+			this->deleteButton->Click += gcnew System::EventHandler(this, &ServiceManagement::deleteButton_Click);
 			// 
-			// button1
+			// addButton
 			// 
-			this->button1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Location = System::Drawing::Point(12, 176);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(88, 31);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &ServiceManagement::button1_Click);
+			this->addButton->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->addButton->FlatAppearance->BorderSize = 0;
+			this->addButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->addButton->Location = System::Drawing::Point(12, 176);
+			this->addButton->Name = L"addButton";
+			this->addButton->Size = System::Drawing::Size(88, 31);
+			this->addButton->TabIndex = 19;
+			this->addButton->Text = L"Добавить";
+			this->addButton->UseVisualStyleBackColor = false;
+			this->addButton->Click += gcnew System::EventHandler(this, &ServiceManagement::addButton1Click);
 			// 
-			// listBox1
+			// servicesListBox
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(12, 35);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(182, 134);
-			this->listBox1->TabIndex = 17;
-			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &ServiceManagement::listBox1_SelectedIndexChanged);
+			this->servicesListBox->FormattingEnabled = true;
+			this->servicesListBox->Location = System::Drawing::Point(12, 35);
+			this->servicesListBox->Name = L"servicesListBox";
+			this->servicesListBox->Size = System::Drawing::Size(182, 134);
+			this->servicesListBox->TabIndex = 17;
+			this->servicesListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &ServiceManagement::servicesListBox_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -277,17 +294,17 @@ namespace Сommunal {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->radioButton2);
-			this->Controls->Add(this->radioButton1);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->tariffSelectButton);
+			this->Controls->Add(this->priceTextBox);
+			this->Controls->Add(this->saveButton);
+			this->Controls->Add(this->cancelButton);
+			this->Controls->Add(this->unitComboBox);
+			this->Controls->Add(this->tariffRadioButton);
+			this->Controls->Add(this->meterRadioButton);
+			this->Controls->Add(this->serviceTextBox);
+			this->Controls->Add(this->deleteButton);
+			this->Controls->Add(this->addButton);
+			this->Controls->Add(this->servicesListBox);
 			this->Name = L"ServiceManagement";
 			this->Text = L"Управление услугами";
 			this->Load += gcnew System::EventHandler(this, &ServiceManagement::ServiceManagement_Load);
@@ -296,37 +313,25 @@ namespace Сommunal {
 
 		}
 #pragma endregion
-	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void cancelButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Close();
 	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void servicesListBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-		TariffSelection^ TariffSelectionWindow = gcnew TariffSelection;
-		TariffSelectionWindow->ShowDialog();
-	}
-	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
-	{
-		if (listBox1->SelectedIndex >= 0)
+		if (servicesListBox->SelectedIndex >= 0)
 		{
-			*Temp = Services->GetItem(listBox1->SelectedIndex);
-			textBox3->Text = gcnew String(Temp->GetName().c_str());
+			*Temp = Services->GetItem(servicesListBox->SelectedIndex);
+			serviceTextBox->Text = StlStringToSystemString(Temp->GetName());
 			if (Temp->GetIsMeter() == true)
-				radioButton1->PerformClick();
+				meterRadioButton->PerformClick();
 			else
-				radioButton2->PerformClick();
-			comboBox1->Text = gcnew String(Temp->GetUnit().c_str());
-			textBox7->Text = Temp->GetPrice().ToString();
-			
-			
-			/*Temp = Services->GetItem(listBox1->SelectedIndex);
-			textBox3->Text = gcnew String(Temp.GetName().c_str());
-			if (Temp.GetIsMeter() == true)
-				radioButton1->PerformClick();
-			else
-				radioButton2->PerformClick();
-			comboBox1->Text = gcnew String(Temp.GetUnit().c_str());
-			textBox7->Text = Temp.GetPrice().ToString();*/
+				tariffRadioButton->PerformClick();
+
+			for (int i = 0; i < unitComboBox->Items->Count; i++)
+				if (unitComboBox->Items[i]->ToString() == StlStringToSystemString(Temp->GetUnit()))
+					unitComboBox->SelectedIndex = i;
+			priceTextBox->Text = Temp->GetPrice().ToString();
 		}
 	}
 	private: System::Void ServiceManagement_Load(System::Object^  sender, System::EventArgs^  e)
@@ -335,51 +340,76 @@ namespace Сommunal {
 		for (int i = 0; i < Services->GetTop(); i++)
 		{
 			*Temp = Services->GetItem(i);
-			listBox1->Items->Add(gcnew String(Temp->GetName().c_str()));
+			servicesListBox->Items->Add(StlStringToSystemString(Temp->GetName()));
 		}
 	}
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void deleteButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		Tariff Temp;
-		Services->AddItem(Temp);
-		listBox1->Items->Add(gcnew String(Temp.GetName().c_str()));
-	}
-	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
-	{
-		if (listBox1->SelectedIndex >= 0)
+		if (servicesListBox->SelectedIndex >= 0)
 		{
-			Services->RemoveItem(listBox1->SelectedIndex);
-			listBox1->Items->Remove(listBox1->SelectedItem);
+			Services->RemoveItem(servicesListBox->SelectedIndex);
+			servicesListBox->Items->Remove(servicesListBox->SelectedItem);
 		}
 	}
-	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void saveButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		Services->SaveToFile("Service.dat");
 		Close();
 	}
-	private: System::Void radioButton1_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void meterRadioButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		if (listBox1->SelectedIndex >= 0)
+		if (servicesListBox->SelectedIndex >= 0)
 		{
 			Temp->SetIsMeter(true);
-			Services->SetItem(*Temp, listBox1->SelectedIndex);
+			Services->SetItem(*Temp, servicesListBox->SelectedIndex);
 		}
 	}
-	private: System::Void radioButton2_Click(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void tariffRadioButton_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		if (listBox1->SelectedIndex >= 0)
+		if (servicesListBox->SelectedIndex >= 0)
 		{
 			Temp->SetIsMeter(false);
-			Services->SetItem(*Temp, listBox1->SelectedIndex);
+			Services->SetItem(*Temp, servicesListBox->SelectedIndex);
 		}
 	}
-	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void serviceTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e)
 	{
-
+		if (servicesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetName(SystemStringToStlString(serviceTextBox->Text));
+			Services->SetItem(*Temp, servicesListBox->SelectedIndex);
+			servicesListBox->Items[servicesListBox->SelectedIndex] = serviceTextBox->Text;
+		}
 	}
-	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e)
+	private: System::Void addButton1Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		
+		Services->AddItem(*Temp);
+		servicesListBox->Items->Add(StlStringToSystemString(Temp->GetName()));
 	}
-	};
+	private: System::Void textBox7_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void priceTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void tariffSelectButton_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		TariffSelection^ TariffSelectionWindow = gcnew TariffSelection;
+		TariffSelectionWindow->ShowDialog();
+	}
+	private: System::Void unitComboBox_SelectionChangeCommitted(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (servicesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetUnit(SystemStringToStlString(unitComboBox->Items[unitComboBox->SelectedIndex]->ToString()));
+			Services->SetItem(*Temp, servicesListBox->SelectedIndex);
+		}
+	}
+	private: System::Void priceTextBox_TextChanged_1(System::Object^  sender, System::EventArgs^  e)
+	{
+		if (servicesListBox->SelectedIndex >= 0)
+		{
+			Temp->SetPrice(SystemStringToFloat(priceTextBox->Text));
+			Services->SetItem(*Temp, servicesListBox->SelectedIndex);
+		}
+	}
+};
 }

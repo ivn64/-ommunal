@@ -2,8 +2,8 @@
 
 House::House()
 {
-	name = "";
-	adress = "";
+	name = "Новый объект";
+	adress = "адрес";
 	totalArea = 0;
 	numberOfPeoples = 0;
 	isPrivate = false;
